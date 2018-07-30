@@ -8,7 +8,8 @@ const app = express();
 
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost/bookworm', { useMongoClient: true });
+//链接数据库，并保证mongo 正常运行
+mongoose.connect('mongodb://localhost/bookworm');
 
 app.use('/api/auth', auth);
 
