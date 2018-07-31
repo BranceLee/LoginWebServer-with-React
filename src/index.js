@@ -2,14 +2,17 @@ import express from 'express';
 import path from 'path';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
 
 import auth from './routes/auth';
+
+dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
 
 //链接数据库，并保证mongo 正常运行
-mongoose.connect('mongodb://localhost/bookworm');
+mongoose.connect(process.env.MONGODB_URL);
 
 app.use('/api/auth', auth);
 
