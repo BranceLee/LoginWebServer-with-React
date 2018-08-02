@@ -11,3 +11,7 @@ yarn add dotenv //keep it run on different Service or environment variables
 yarn add mongoose-unique-validator //验证 email is unique
 
 yarn add lodash //解析错误的结果(check email err)
+
+mailtrap data //regist and send the email 
+
+yarn add nodemailer 
