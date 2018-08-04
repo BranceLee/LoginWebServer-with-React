@@ -5,7 +5,7 @@ import { sendConfirmationEmail } from '../mailer';
 
 const router = express.Router();
 
-//响应前端
+//注册用户，并发送邮箱验证
 router.post('/', (req, res) => {
 	const { email, password } = req.body.user;
 	const user = new User({ email });

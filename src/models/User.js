@@ -16,14 +16,26 @@ const schema = new mongoose.Schema(
 	}
 );
 
-//send the public data
+//用户账号标识符
 schema.methods.generateJWT = function generateJWT() {
 	//sign 用于编码与释码的作用，第一个参数是加密内容
 	return jwt.sign(
 		{
-			email: this.email
+			email: this.email,
+			password: this.password
 		},
 		process.env.JWT_SECRET
+	);
+};
+
+//重置密码信息加密,by DB 的id
+schema.methods.generateResetPasswordJWT = function generateRestPasswordJWT() {
+	return jwt.sign(
+		{
+			_id: this.id
+		},
+		process.env.JWT_SECRET,
+		{ expiresIn: '1h' } //有效时间
 	);
 };
 
@@ -42,6 +54,10 @@ schema.methods.setConfirmationToken = function setConfirmationToken() {
 
 schema.methods.generateConfirmationUrl = function generateConfirmationUrl() {
 	return `${process.env.HOST}/confirmation/${this.confirmationToken}`;
+};
+
+schema.methods.generateResetPasswordUrl = function generateResetPasswordUrl() {
+	return `${process.env.HOST}/resetpassword_confirm/${this.email}/${this.generateResetPasswordJWT()}`;
 };
 
 schema.methods.toAuthJSON = function toAuthJSON() {

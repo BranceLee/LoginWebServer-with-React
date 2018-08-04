@@ -26,3 +26,18 @@ export function sendConfirmationEmail(user) {
 	};
 	transport.sendMail(email);
 }
+
+export function sendResetPasswordEmail(user) {
+	const transport = setup();
+	const email = {
+		from,
+		to: user.email,
+		subject: 'You Are Changing Your Password',
+		text: `
+		There is someone who send the request to change your password on the bookworm
+
+		${user.generateResetPasswordUrl()}
+		`
+	};
+	transport.sendMail(email);
+}
