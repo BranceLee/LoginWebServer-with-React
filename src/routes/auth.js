@@ -1,9 +1,9 @@
 import express from 'express';
 import User from '../models/User';
 import jwt from 'jsonwebtoken';
-const router = express.Router();
 import { sendResetPasswordEmail } from '../mailer';
 
+const router = express.Router();
 //用户登录
 router.post('/', (req, res) => {
 	const { credentials } = req.body;

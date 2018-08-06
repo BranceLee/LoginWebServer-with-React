@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 
 import auth from './routes/auth';
 import user from './routes/users';
+import books from './routes/books';
 
 dotenv.config();
 const app = express();
@@ -18,6 +19,7 @@ mongoose.connect(process.env.MONGODB_URL);
 //'/xx/xx' 与 Routes
 app.use('/api/auth', auth);
 app.use('/api/users', user);
+app.use('/api/books', books);
 
 app.get('/*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'index.html'));
