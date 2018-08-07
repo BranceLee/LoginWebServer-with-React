@@ -6,10 +6,26 @@ router.get('/search', (req, res) => {
 	res.json({
 		books: [
 			{
-				goodreadsId: 1,
+				goodreadsId: 0,
 				title: 'Block Chain',
 				authors: 'Lee',
-				convers: [ 'http1' ]
+				covers: [ 'http1', 'http2' ],
+				pages: 189
+			},
+
+			{
+				goodreadsId: 1,
+				title: 'ThINK OF JAVA',
+				authors: 'Tomsong',
+				covers: [ 'http1', 'http2' ],
+				pages: 389
+			},
+			{
+				goodreadsId: 2,
+				title: 'Business Man',
+				authors: 'Jack',
+				covers: [ 'http1', 'http2' ],
+				pages: 218
 			}
 		]
 	});
