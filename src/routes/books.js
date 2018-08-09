@@ -54,6 +54,16 @@ router.post('/', (req, res) => {
 		.catch((err) => res.status(400).json({ errors: parseErrors(err.errors) }));
 });
 
-
+router.post('/removeBook', (req, res) => {
+	Book.deleteOne({...req.body.book, userId: req.currentUser._id })
+		.then(
+			Book.find({ userId: req.currentUser._id }).then((books) =>
+				res.json({
+					books
+				})
+			)
+		)
+		.catch((err) => res.status(400).json({ errors: parseErrors(err.errors) }));
+});
 
 export default router;
