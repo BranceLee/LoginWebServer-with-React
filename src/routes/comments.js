@@ -8,10 +8,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/addcomment', (req, res) => {
-	const { comment: { email }, comment } = req.body;
+	const { comment: { email }, comment } = req.body.data;
 	const comments = new Comment({ email });
 	comments.setComment(comment);
-	comments.save().then((comment) => res.json({ comment })).catch((err) => res.status(400).json({ errors: err }));
+	comments.save().then((data) => res.json({ data })).catch((err) => res.status(400).json({ errors: '评论失败' }));
 });
 
 export default router;
